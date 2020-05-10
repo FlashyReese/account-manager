@@ -11,7 +11,19 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cea6f31d-8d8e-43b2-82e0-bfe73b9cd60c" name="Default Changelist" comment="" />
+    <list default="true" id="cea6f31d-8d8e-43b2-82e0-bfe73b9cd60c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts.db" beforeDir="false" afterPath="$PROJECT_DIR$/accounts.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts.h" beforeDir="false" afterPath="$PROJECT_DIR$/accounts.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arraylist.h" beforeDir="false" afterPath="$PROJECT_DIR$/arraylist.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cipher.h" beforeDir="false" afterPath="$PROJECT_DIR$/cipher.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.h" beforeDir="false" afterPath="$PROJECT_DIR$/file.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +33,11 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1ZqBiVFstNDvkj9UULpDZ1zVhIf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -29,6 +45,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
@@ -70,7 +87,7 @@
       <workItem from="1589031932957" duration="2016000" />
       <workItem from="1589105483699" duration="4540000" />
       <workItem from="1589114436328" duration="3681000" />
-      <workItem from="1589118445662" duration="246000" />
+      <workItem from="1589118445662" duration="2377000" />
     </task>
     <servers />
   </component>
@@ -90,22 +107,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="718" y="390" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1589107360584" />
-    <state width="1877" height="362" key="GridCell.Tab.0.bottom" timestamp="1589118424755">
+    <state width="1877" height="455" key="GridCell.Tab.0.bottom" timestamp="1589120828850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589118424755" />
-    <state width="1877" height="362" key="GridCell.Tab.0.center" timestamp="1589118424755">
+    <state width="1877" height="455" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589120828850" />
+    <state width="1877" height="455" key="GridCell.Tab.0.center" timestamp="1589120828850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589118424755" />
-    <state width="1877" height="362" key="GridCell.Tab.0.left" timestamp="1589118424755">
+    <state width="1877" height="455" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589120828850" />
+    <state width="1877" height="455" key="GridCell.Tab.0.left" timestamp="1589120828850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589118424755" />
-    <state width="1877" height="362" key="GridCell.Tab.0.right" timestamp="1589118424755">
+    <state width="1877" height="455" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589120828850" />
+    <state width="1877" height="455" key="GridCell.Tab.0.right" timestamp="1589120828850">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="362" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589118424755" />
+    <state width="1877" height="455" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589120828850" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589118445713">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -123,13 +140,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/file.h</url>
-          <line>45</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>132</line>
+          <line>176</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

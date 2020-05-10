@@ -14,6 +14,9 @@ struct Keys{
 
 char alpha[95] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
+/*
+ * Checar si un arreglo de caracteres contiene un caracter.
+ */
 int containsChar(char * string, char c, int size){
     for (int i = 0; i < size; i++) {
         if(string[i] == c){
@@ -22,7 +25,9 @@ int containsChar(char * string, char c, int size){
     }
     return 0;
 }
-
+/*
+ * Generar un llave random con el variable alpha
+ */
 char * generateCipherKey(){
     int size = 0;
     char * key = malloc(strlen(alpha)+1 * sizeof(char));
@@ -37,6 +42,9 @@ char * generateCipherKey(){
     return key;
 }
 
+/*
+ * Un espejo de alpha representada con el llave generado.
+ */
 struct Keys getKeys(char cipherKey[]){
     int length = strlen(alpha);
     struct Key * keys = malloc(length * sizeof(struct Key));
@@ -50,6 +58,9 @@ struct Keys getKeys(char cipherKey[]){
     return temp;
 }
 
+/*
+ * Encripta un arreglo de caracteres con una llave
+ */
 char * encrypt(char string[], char cipherKey[]){
     char * newString = malloc( strlen(string)+1 * sizeof(char));
     struct Keys cipherer = getKeys(cipherKey);
@@ -64,6 +75,9 @@ char * encrypt(char string[], char cipherKey[]){
     return newString;
 }
 
+/*
+ * Decripta un arreglo de caracteres con una llave
+ */
 char * decrypt(char string[], char cipherKey[]){
     char * newString = malloc( strlen(string)+1 * sizeof(char));
     struct Keys cipherer = getKeys(cipherKey);

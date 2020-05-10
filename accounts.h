@@ -17,6 +17,9 @@ struct Accounts{
     struct Account * elements;
 };
 
+/*
+ * Leer cuentas guardadas con el path y el delimitador.
+ */
 struct Accounts getAccounts(char filePath[], char delimiter[], int bufferSize){
     struct ArrayList accountsList = getLines(filePath);
     struct Account * accounts = malloc(accountsList.elementSize * sizeof(struct Account));
@@ -40,6 +43,9 @@ struct Accounts getAccounts(char filePath[], char delimiter[], int bufferSize){
     return temp;
 }
 
+/*
+ * Agregar una cuenta a la estructura de cuentas.
+ */
 struct Accounts addAccount(struct Accounts accounts, struct Account account){
     accounts.elementSize++;
     accounts.elements = realloc(accounts.elements, (accounts.elementSize) * sizeof(struct Account));
@@ -47,6 +53,9 @@ struct Accounts addAccount(struct Accounts accounts, struct Account account){
     return accounts;
 }
 
+/*
+ * Borrar una cuenta de la estructura de cuentas.
+ */
 struct Accounts removeAccount(struct Accounts accounts, struct Account account){
     int index = -1;
     for (int i = 0; i < accounts.elementSize; i++) {
@@ -65,6 +74,9 @@ struct Accounts removeAccount(struct Accounts accounts, struct Account account){
     return accounts;
 }
 
+/*
+ * Guardar estructura de cuentas a un path especifico, usando un delimitador.
+ */
 void write(struct Accounts accounts, char filePath[], char delimiter[]){
     FILE *fptr;
     fptr = fopen(filePath,"w");

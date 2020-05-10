@@ -3,6 +3,11 @@
 #include <time.h>
 #include "accounts.h"
 #include "cipher.h"
+/*
+ * @authors: Miguel Humberto Herrera Gonzalez, Yao Chung Hu
+ * @version: 1.2
+ * @date 2020-03-30
+ */
 
 static char filePathAccounts[] = "D:\\Projects\\CLionProjects\\Projecto Final\\accounts.db"; //Todo: Favor de cambiar esto dependiendo donde esta guardada las cuentas
 static char filePathCipher[] = "D:\\Projects\\CLionProjects\\Projecto Final\\cipher.key"; //Todo: Favor de cambiar esto dependiendo donde esta guardada la llave
@@ -13,7 +18,7 @@ static struct Accounts savedAccounts;
 void mainMenuDisplay(int error);
 void cipherKeyDisplay(int error);
 void viewAccountsDisplay(int error);
-void viewAccountsAllDisplay(int error);
+void viewAccountsAllDisplay(int error, int mode);
 
 
 char * getCurrentCipherKey(){
@@ -38,25 +43,64 @@ char * getCurrentCipherKey(){
     return existingLine;
 }
 
-void viewAccountsAllInput(){
+void viewAccountsAllInput(int mode){
     int option;
     scanf("%d", &option);
-    if(option > 0 && option <= savedAccounts.elementSize){
-        struct Account temp = savedAccounts.elements[option-1];
-        printf("Site: %s\n", temp.site);
-        printf("Username/Email: %s\n", temp.name);
-        printf("Password: encrypted(%s), decrypted(%s)\n", temp.password, decrypt(temp.password, getCurrentCipherKey()));
+    if(mode == 0){
+        if(option > 0 && option <= savedAccounts.elementSize){
+            struct Account temp = savedAccounts.elements[option-1];
+            printf("Site: %s\n", temp.site);
+            printf("Username/Email: %s\n", temp.name);
+            printf("Password: encrypted(%s), decrypted(%s)\n", temp.password, decrypt(temp.password, getCurrentCipherKey()));
+        }
+    }else if(mode == 1){//Change Password
+        if(option > 0 && option <= savedAccounts.elementSize){
+            getchar();
+            struct Account temp = savedAccounts.elements[option-1];
+            printf("Site: %s\n", temp.site);
+            printf("Username/Email: %s\n", temp.name);
+            printf("Please enter your old password:\n");
+            char oldpass[2048], pass[2048], confirmpass[2048];
+            fgets(oldpass, 2048, stdin);
+            if(strcmp(choppy(oldpass), decrypt(temp.password, getCurrentCipherKey())) == 0){
+                printf("Please enter your new password:\n");
+                fgets(pass, 2048, stdin);
+                printf("Please confirm your new password:\n");
+                fgets(confirmpass, 2048, stdin);
+                if(strcmp(choppy(confirmpass), choppy(pass)) == 0){
+                    savedAccounts.elements[option-1].password = encrypt(choppy(pass), getCurrentCipherKey());
+                    write(savedAccounts, filePathAccounts, delimiter);
+                }else{
+                    printf("New Passwords did not match!\n");
+                }
+            }else{
+                printf("Old Password did not match!\n");
+            }
+        }
+    }else if(mode == 2){//Deletion
+        if(option > 0 && option <= savedAccounts.elementSize){
+            struct Account temp = savedAccounts.elements[option-1];
+            printf("Site: %s\n", temp.site);
+            printf("Username/Email: %s\n", temp.name);
+            printf("Are you sure you want to remove this account?\n1. Yes\n2. No\n");
+            int confirm;
+            scanf("%d", &confirm);
+            if(confirm == 1){
+                savedAccounts = removeAccount(savedAccounts, temp);
+                write(savedAccounts, filePathAccounts, delimiter);
+            }
+        }
     }
 }
 
-void viewAccountsAllDisplay(int error){
+void viewAccountsAllDisplay(int error, int mode){
     printf("---------------------------------------------------------\n");
     printf("---------------------Account Manager---------------------\n");
     printf("---------------------------------------------------------\n");
     for (int i = 0; i < savedAccounts.elementSize; i++) {
-        printf("%d. %s\n", i+1, savedAccounts.elements[i].site);
+        printf("%d. %s - %s\n", i+1, savedAccounts.elements[i].site, savedAccounts.elements[i].name);
     }
-    viewAccountsAllInput();
+    viewAccountsAllInput(mode);
 }
 
 void searchAccountBySite(){
@@ -88,7 +132,7 @@ void viewAccountsInput(){
         searchAccountBySite();
         viewAccountsDisplay(0);
     }else if(option == 2){
-        viewAccountsAllDisplay(0);
+        viewAccountsAllDisplay(0, 0);
         viewAccountsDisplay(0);
     }else if(option == 3){
         mainMenuDisplay(0);
@@ -213,12 +257,17 @@ void mainMenuInput(){
             saveNewAccount();
             break;
         case 3:
-
+            viewAccountsAllDisplay(0, 1);
+            mainMenuDisplay(0);
             break;
         case 4:
-            cipherKeyDisplay(0);
+            viewAccountsAllDisplay(0, 2);
+            mainMenuDisplay(0);
             break;
         case 5:
+            cipherKeyDisplay(0);
+            break;
+        case 6:
 
             break;
         default:
@@ -232,9 +281,10 @@ void mainMenuDisplay(int error){
     printf("---------------------------------------------------------\n");
     printf("1. View Accounts\n");
     printf("2. Save New Account\n");
-    printf("3. Modify Existing Account\n");
-    printf("4. Generate Cipher Key\n");
-    printf("5. Quit Application\n");
+    printf("3. Modify Password of Existing Account\n");
+    printf("4. Remove Account\n");
+    printf("5. Generate Cipher Key\n");
+    printf("6. Quit Application\n");
     if(error == 1){
         printf("Invalid Input, Please Try Again!\n");
     }
@@ -247,37 +297,6 @@ int main(int argc, char **argv) {
     }
     srand(time(NULL));
     savedAccounts = getAccounts(filePathAccounts, delimiter, bufferSize);
-
     mainMenuDisplay(0);
-    /*char * cipherKey = generateCipherKey();
-    printf("Llave generado: %s\n", cipherKey);
-    char * encrypted = encrypt("Esto es un texto no encriptado", cipherKey);
-    printf("Texto encriptado: %s\n", encrypted);
-    char * decrypted = decrypt(encrypted, cipherKey);
-    printf("Texto desencriptado: %s\n\n", decrypted);
-    free(cipherKey);
-
-    //struct Accounts list = getAccounts(argv[1], argv[2], 2048);
-    printf("Listado en el .txt guardado:\n");
-    struct Accounts list = getAccounts(filePath, delimiter, bufferSize);
-    for (int i = 0; i < list.elementSize; ++i) {
-        printf("Site: %s Name: %s Password: %s\n", list.elements[i].site, list.elements[i].name, list.elements[i].password);
-    }
-    printf("\n");
-    struct Account test = {"facebook.com","usuario1","qwerty"};
-    list = addAccount(list, test);
-    struct Account test2 = {"google.com","usuario2","asdf"};
-    list = addAccount(list, test2);
-    printf("Listado con 2 nuevos cuentas:\n");
-    for (int i = 0; i < list.elementSize; ++i) {
-        printf("Site: %s Name: %s Password: %s\n", list.elements[i].site, list.elements[i].name, list.elements[i].password);
-    }
-    printf("\n");
-    *//*list = removeAccount(list, test);
-    printf("Listado con uno de los nuevos cuentas eliminado:\n");
-    for (int i = 0; i < list.elementSize; ++i) {
-        printf("Site: %s Name: %s Password: %s\n", list.elements[i].site, list.elements[i].name, list.elements[i].password);
-    }*//*
-    write(list, "D:\\Projects\\CLionProjects\\Projecto Final\\accounts.db", "::");*/
     return 0;
 }

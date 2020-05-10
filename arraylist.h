@@ -13,6 +13,9 @@ struct ArrayList{
     char ** elements;
 };
 
+/*
+ * Cortar '\n' a un arreglo de caracteres
+ */
 char *choppy(char *s){
     int len = strlen(s);
     if(s[len-1] == 10)
@@ -20,6 +23,13 @@ char *choppy(char *s){
     return s;
 }
 
+/*
+ * Separar una linea de ascii con varios elementos con un delimitador.
+ * Ejemplo:
+ * Delimiter: ':::'
+ * linetest: 'elemento1:::elemento2:::elemento3'
+ * Resultado: {"elemento1", "elemento2", "elemento3"}
+ */
 struct ArrayList split(char linetest[], char delimiter[], int bufferSize){
     char line[65565];
     strcpy(line, linetest);
@@ -39,6 +49,7 @@ struct ArrayList split(char linetest[], char delimiter[], int bufferSize){
     temp.elements = myArray;
     return temp;
 }
+/* Deprecated
 
 struct ArrayList addElement(struct ArrayList old, char line[]){
     old.elementSize = old.elementSize+1;
@@ -46,4 +57,4 @@ struct ArrayList addElement(struct ArrayList old, char line[]){
     old.elements[old.elementSize-1] = malloc(old.bufferSize * sizeof(char));
     strcpy(old.elements[old.elementSize-1], line);
     return old;
-}
+}*/

@@ -6,6 +6,9 @@
 
 #include "arraylist.h"
 
+/*
+ * Regresa una lista de lineas leidas de un archivo.
+ */
 struct ArrayList getLines(char path[]){
     struct ArrayList temp;
     temp.bufferSize = 2048;
@@ -28,19 +31,4 @@ struct ArrayList getLines(char path[]){
     temp.elementSize = arrayIndexes;
     temp.elements = myArray;
     return temp;
-}
-
-void test(){
-    FILE *fin;
-    FILE *fout;
-    int character;
-    fin=fopen("D:\\Projects\\CLionProjects\\Projecto Final\\in.txt", "r");
-    fout=fopen("D:\\Projects\\CLionProjects\\Projecto Final\\out.txt","w");
-    while((character=fgetc(fin))!=EOF){
-        putchar(character); // It displays the right character (UTF8) in the terminal
-        fprintf(fout,"%c ",character); // It displays weird characters in the file
-    }
-    fclose(fin);
-    fclose(fout);
-    printf("\nFile has been created...\n");
 }
