@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Projects/CLionProjects/Projecto Final/accounts.h
+file.h
+D:/Projects/CLionProjects/Projecto Final/file.h
+
+D:/Projects/CLionProjects/Projecto Final/arraylist.h
+string.h
+-
+stdlib.h
+-
+
+D:/Projects/CLionProjects/Projecto Final/cipher.h
+string.h
+-
+stdio.h
+-
+stdlib.h
+-
+
+D:/Projects/CLionProjects/Projecto Final/file.h
+arraylist.h
+D:/Projects/CLionProjects/Projecto Final/arraylist.h
+
+D:/Projects/CLionProjects/Projecto Final/main.c
+stdio.h
+-
+locale.h
+-
+time.h
+-
+accounts.h
+D:/Projects/CLionProjects/Projecto Final/accounts.h
+cipher.h
+D:/Projects/CLionProjects/Projecto Final/cipher.h
+
