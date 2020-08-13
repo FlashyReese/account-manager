@@ -12,17 +12,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cea6f31d-8d8e-43b2-82e0-bfe73b9cd60c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts.db" beforeDir="false" afterPath="$PROJECT_DIR$/accounts.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts.h" beforeDir="false" afterPath="$PROJECT_DIR$/accounts.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/arraylist.h" beforeDir="false" afterPath="$PROJECT_DIR$/arraylist.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cipher.h" beforeDir="false" afterPath="$PROJECT_DIR$/cipher.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cipher.key" beforeDir="false" afterPath="$PROJECT_DIR$/cipher.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Projecto_Final.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Projecto_Final.dir/main.c.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Projecto_Final.dir/vc140.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Projecto_Final.dir/vc140.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.ilk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Projecto_Final.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/file.h" beforeDir="false" afterPath="$PROJECT_DIR$/file.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +53,7 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunManager">
-    <configuration name="Projecto_Final" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="C:\Users\ievil\Desktop\Test\Test.txt ::" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Projecto_Final" TARGET_NAME="Projecto_Final" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Projecto_Final" RUN_TARGET_NAME="Projecto_Final">
+    <configuration name="Projecto_Final" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Projecto_Final" TARGET_NAME="Projecto_Final" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Projecto_Final" RUN_TARGET_NAME="Projecto_Final">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -87,7 +90,10 @@
       <workItem from="1589031932957" duration="2016000" />
       <workItem from="1589105483699" duration="4540000" />
       <workItem from="1589114436328" duration="3681000" />
-      <workItem from="1589118445662" duration="2377000" />
+      <workItem from="1589118445662" duration="5431000" />
+      <workItem from="1589158727898" duration="7391000" />
+      <workItem from="1590102792094" duration="21000" />
+      <workItem from="1590799525399" duration="119000" />
     </task>
     <servers />
   </component>
@@ -95,10 +101,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588037718372">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589121062495">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588037718372" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589121062495" />
     <state x="718" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1589107405839">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -107,26 +113,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="718" y="390" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1589107360584" />
-    <state width="1877" height="455" key="GridCell.Tab.0.bottom" timestamp="1589120828850">
+    <state width="1877" height="314" key="GridCell.Tab.0.bottom" timestamp="1589230158125">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="455" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589120828850" />
-    <state width="1877" height="455" key="GridCell.Tab.0.center" timestamp="1589120828850">
+    <state width="1877" height="314" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589230158125" />
+    <state width="1877" height="314" key="GridCell.Tab.0.center" timestamp="1589230158125">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="455" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589120828850" />
-    <state width="1877" height="455" key="GridCell.Tab.0.left" timestamp="1589120828850">
+    <state width="1877" height="314" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589230158125" />
+    <state width="1877" height="314" key="GridCell.Tab.0.left" timestamp="1589230158124">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="455" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589120828850" />
-    <state width="1877" height="455" key="GridCell.Tab.0.right" timestamp="1589120828850">
+    <state width="1877" height="314" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589230158124" />
+    <state width="1877" height="314" key="GridCell.Tab.0.right" timestamp="1589230158125">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="455" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589120828850" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589118445713">
+    <state width="1877" height="314" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589230158125" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1590102799750">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589118445713" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590102799750" />
     <state x="685" y="162" key="refactoring.ChangeSignatureDialog" timestamp="1589107479382">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -141,7 +147,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.c</url>
-          <line>176</line>
+          <line>182</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

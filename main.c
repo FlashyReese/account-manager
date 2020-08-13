@@ -9,8 +9,8 @@
  * @date 2020-03-30
  */
 
-static char filePathAccounts[] = "D:\\Projects\\CLionProjects\\Projecto Final\\accounts.db"; //Todo: Favor de cambiar esto dependiendo donde esta guardada las cuentas
-static char filePathCipher[] = "D:\\Projects\\CLionProjects\\Projecto Final\\cipher.key"; //Todo: Favor de cambiar esto dependiendo donde esta guardada la llave
+static char filePathAccounts[] = "accounts.db";//"D:\\Projects\\CLionProjects\\Projecto Final\\accounts.db"; //Todo: Favor de cambiar esto dependiendo donde esta guardada las cuentas
+static char filePathCipher[] = "cipher.key";//"D:\\Projects\\CLionProjects\\Projecto Final\\cipher.key"; //Todo: Favor de cambiar esto dependiendo donde esta guardada la llave
 static char delimiter[] = ":::::";
 static int bufferSize = 2048;
 static struct Accounts savedAccounts;
@@ -23,7 +23,12 @@ void viewAccountsAllDisplay(int error, int mode);
 
 char * getCurrentCipherKey(){
     char existingLine[2048];
-    FILE *file = fopen(filePathCipher, "r");
+    FILE *file = fopen(filePathCipher, "rb");// Abrir el archivo donde esta guardada el llave
+    if(file == NULL) //Si no existe el archivo crearlo
+    {
+        file = fopen(filePathCipher, "wb");
+        file = fopen(filePathCipher, "rb");
+    }
     if(file != NULL){
         char line[2048];
         while(fgets(line, sizeof line, file) != NULL){
@@ -40,7 +45,7 @@ char * getCurrentCipherKey(){
         printf("Please generate a cipher key first!!!\n");
         mainMenuDisplay(0);
     }
-    return existingLine;
+    return existingLine; //retorna el llave del archivo
 }
 
 void viewAccountsAllInput(int mode){
@@ -51,7 +56,7 @@ void viewAccountsAllInput(int mode){
             struct Account temp = savedAccounts.elements[option-1];
             printf("Site: %s\n", temp.site);
             printf("Username/Email: %s\n", temp.name);
-            printf("Password: encrypted(%s), decrypted(%s)\n", temp.password, decrypt(temp.password, getCurrentCipherKey()));
+            printf("Password: encrypted(%s), decrypted(%s)\n", temp.password, decrypt(temp.password, getCurrentCipherKey()));//Solo muestra y desencripta
         }
     }else if(mode == 1){//Change Password
         if(option > 0 && option <= savedAccounts.elementSize){
@@ -68,8 +73,8 @@ void viewAccountsAllInput(int mode){
                 printf("Please confirm your new password:\n");
                 fgets(confirmpass, 2048, stdin);
                 if(strcmp(choppy(confirmpass), choppy(pass)) == 0){
-                    savedAccounts.elements[option-1].password = encrypt(choppy(pass), getCurrentCipherKey());
-                    write(savedAccounts, filePathAccounts, delimiter);
+                    savedAccounts.elements[option-1].password = encrypt(choppy(pass), getCurrentCipherKey());// Cambia la contrasena
+                    write(savedAccounts, filePathAccounts, delimiter);// guarda la lista
                 }else{
                     printf("New Passwords did not match!\n");
                 }
@@ -86,8 +91,8 @@ void viewAccountsAllInput(int mode){
             int confirm;
             scanf("%d", &confirm);
             if(confirm == 1){
-                savedAccounts = removeAccount(savedAccounts, temp);
-                write(savedAccounts, filePathAccounts, delimiter);
+                savedAccounts = removeAccount(savedAccounts, temp);//Elimina una cuenta de una lista
+                write(savedAccounts, filePathAccounts, delimiter);//Guarda lista
             }
         }
     }
@@ -110,7 +115,7 @@ void searchAccountBySite(){
     struct Account temp;
     int found = 0;
     for (int i = 0; i < savedAccounts.elementSize; i++) {
-        if(strcmp(savedAccounts.elements[i].site, line) == 0){
+        if(strcmp(savedAccounts.elements[i].site, line) == 0){//Busqueda por sitio
             temp = savedAccounts.elements[i];
             found = 1;
             break;
@@ -160,18 +165,19 @@ void generateKey(int mode){
     printf("Newly Generated Cipher Key: %s\n", cipherKey);
     if(mode == 0){
         for (int i = 0; i < savedAccounts.elementSize; i++) {
-            savedAccounts.elements[i].password = encrypt(decrypt(savedAccounts.elements[i].password, getCurrentCipherKey()), cipherKey);
+            savedAccounts.elements[i].password = encrypt(decrypt(savedAccounts.elements[i].password, getCurrentCipherKey()), cipherKey);// Cambia todo las cuentas encriptado con el viejo llave con uno nuevo
         }
+        write(savedAccounts, filePathAccounts, delimiter);// guarda lista nuevamente encriptado
     }
     FILE *fptr;
-    fptr = fopen(filePathCipher,"w");
+    fptr = fopen(filePathCipher,"wb");
 
     if(fptr == NULL)
     {
         printf("Error!");
         exit(1);
     }
-    fprintf(fptr, "%s", cipherKey);
+    fprintf(fptr, "%s", cipherKey);//guarda la llave
     fclose(fptr);
 }
 
@@ -189,22 +195,9 @@ void cipherKeyInput(){
 }
 
 void cipherKeyDisplay(int error){
-    char existingLine[2048];
-    FILE *file = fopen(filePathCipher, "r");
-    if(file != NULL){
-        char line[2048];
-        while(fgets(line, sizeof line, file) != NULL){
-            strcpy(existingLine, choppy(line));
-            break;
-        }
-        fclose (file);
-    }else{
-        printf("An Error occur while trying to open '%s'.\n", filePathCipher);
-        exit(EXIT_FAILURE);
-    }
-    int existing = strlen(existingLine) >= 94 ? 1 : 0;
+    int existing = strlen(getCurrentCipherKey()) == 95 ? 1 : 0;
     if(existing){
-        printf("Looks like you already have an existing saved cipher key(%s). Would you like to replace it with a newly generated one?\n", existingLine);
+        printf("Looks like you already have an existing saved cipher key(%s). Would you like to replace it with a newly generated one?\n", getCurrentCipherKey());
         printf("WARNING: Any existing saved accounts encrypted with an old cipher key may be lost!!!\nProceed with precaution.\n");
         printf("1. Continue using existing cipher key\n");
         printf("2. Replace old cipher key\n");
@@ -220,6 +213,11 @@ void cipherKeyDisplay(int error){
 
 
 void saveNewAccount(){
+    char * key = getCurrentCipherKey();
+    if(strlen(key) != 95){
+        printf("Please generate a key first!!!\n");
+        mainMenuDisplay(0);
+    }
     fflush(stdin);
     fflush(stdout);
     getchar();
@@ -237,8 +235,8 @@ void saveNewAccount(){
     fgets(confirmpass, 2048, stdin);
     if(strcmp(password, confirmpass) == 0){
         struct Account temp = {choppy(site),choppy(name),encrypt(choppy(password), getCurrentCipherKey())};
-        savedAccounts = addAccount(savedAccounts, temp);
-        write(savedAccounts, filePathAccounts, delimiter);
+        savedAccounts = addAccount(savedAccounts, temp);// Guarda una nueva cuenta a la lista
+        write(savedAccounts, filePathAccounts, delimiter); // Guarda la lista
     }else{
         printf("Passwords did not match!\n");
     }
@@ -295,8 +293,8 @@ int main(int argc, char **argv) {
     if (setlocale(LC_ALL, "es") == NULL) {
         puts("Unable to set locale");
     }
-    srand(time(NULL));
-    savedAccounts = getAccounts(filePathAccounts, delimiter, bufferSize);
+    srand(time(NULL));//Usado para un randomizador
+    savedAccounts = getAccounts(filePathAccounts, delimiter, bufferSize);//Carga todas las cuentas guardadas
     mainMenuDisplay(0);
     return 0;
 }

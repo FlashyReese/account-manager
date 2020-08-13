@@ -19,7 +19,7 @@ struct ArrayList{
 char *choppy(char *s){
     int len = strlen(s);
     if(s[len-1] == 10)
-        s[len-1] = 0;
+        s[len-1] = 0;//Aqui hace la corta
     return s;
 }
 
@@ -31,30 +31,21 @@ char *choppy(char *s){
  * Resultado: {"elemento1", "elemento2", "elemento3"}
  */
 struct ArrayList split(char linetest[], char delimiter[], int bufferSize){
-    char line[65565];
-    strcpy(line, linetest);
-    int arrayIndexes = 0;
-    char ** myArray = malloc(arrayIndexes * sizeof(*myArray));
-    char * token = strtok(line, delimiter);
+    char line[65565];// temporal
+    strcpy(line, linetest);//copia la linea del parametro al temporal
+    int arrayIndexes = 0;// contador
+    char ** myArray = malloc(arrayIndexes * sizeof(*myArray));// memoria dinamica para un matrice de caracteres
+    char * token = strtok(line, delimiter);//funcion de delimitador(split) divide una linea con un delimitador
     while( token != NULL ) {
-        arrayIndexes++;
-        myArray = realloc(myArray, (arrayIndexes) * sizeof(*myArray));
-        myArray[arrayIndexes-1] = malloc(bufferSize * sizeof(char));
-        strcpy(myArray[arrayIndexes-1], choppy(token));
-        token = strtok(NULL, delimiter);
+        arrayIndexes++;//aumento
+        myArray = realloc(myArray, (arrayIndexes) * sizeof(*myArray));//aumento del memoria con realloc
+        myArray[arrayIndexes-1] = malloc(bufferSize * sizeof(char));//memoria dinamica adentro del nuevo espacio reservada
+        strcpy(myArray[arrayIndexes-1], choppy(token));//copia el elemento al arreglo
+        token = strtok(NULL, delimiter);//corta de nuevo con el delimitador hasta que no hay para cortar
     }
     struct ArrayList temp;
-    temp.elementSize = arrayIndexes;
-    temp.bufferSize = bufferSize;
-    temp.elements = myArray;
-    return temp;
+    temp.elementSize = arrayIndexes;//Cantidad de elementos
+    temp.bufferSize = bufferSize;//Un buffer para las lineas
+    temp.elements = myArray;//los elementos
+    return temp;//retorna el array
 }
-/* Deprecated
-
-struct ArrayList addElement(struct ArrayList old, char line[]){
-    old.elementSize = old.elementSize+1;
-    old.elements = realloc(old.elements, (old.elementSize) * sizeof(*old.elements));
-    old.elements[old.elementSize-1] = malloc(old.bufferSize * sizeof(char));
-    strcpy(old.elements[old.elementSize-1], line);
-    return old;
-}*/

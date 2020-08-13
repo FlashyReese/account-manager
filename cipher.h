@@ -12,7 +12,7 @@ struct Keys{
     struct Key * elements;
 };
 
-char alpha[95] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+char alpha[95] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";//Alphabeto para el randomizar, encriptar y desencriptar
 
 /*
  * Checar si un arreglo de caracteres contiene un caracter.
@@ -49,13 +49,13 @@ struct Keys getKeys(char cipherKey[]){
     int length = strlen(alpha);
     struct Key * keys = malloc(length * sizeof(struct Key));
     for (int i = 0; i < length; i++) {
-        keys[i].original = alpha[i];
-        keys[i].placeholder = cipherKey[i];
+        keys[i].original = alpha[i];//El original alphabeto
+        keys[i].placeholder = cipherKey[i];//El encriptado como mascara con el mismo posicion
     }
     struct Keys temp;
     temp.elementSize = length;
     temp.elements = keys;
-    return temp;
+    return temp;//retorna esa lista y alphabetos y su mascara como Llaves
 }
 
 /*
@@ -63,16 +63,16 @@ struct Keys getKeys(char cipherKey[]){
  */
 char * encrypt(char string[], char cipherKey[]){
     char * newString = malloc( strlen(string)+1 * sizeof(char));
-    struct Keys cipherer = getKeys(cipherKey);
+    struct Keys cipherer = getKeys(cipherKey);//Agarrar esos llaves con el parametro
     for (int i = 0; i <  strlen(string); i++) {
         for (int j = 0; j < cipherer.elementSize; j++) {
-            if(string[i] == cipherer.elements[j].original){
-                newString[i] = cipherer.elements[j].placeholder;
+            if(string[i] == cipherer.elements[j].original){//Por cada caracter igual al original
+                newString[i] = cipherer.elements[j].placeholder;// Reemplazalo con el mascara
             }
         }
     }
-    newString[strlen(string)] = '\0';
-    return newString;
+    newString[strlen(string)] = '\0';// fin de linea
+    return newString;//retorna el texto encriptado
 }
 
 /*
@@ -80,15 +80,15 @@ char * encrypt(char string[], char cipherKey[]){
  */
 char * decrypt(char string[], char cipherKey[]){
     char * newString = malloc( strlen(string)+1 * sizeof(char));
-    struct Keys cipherer = getKeys(cipherKey);
+    struct Keys cipherer = getKeys(cipherKey);//Agarrar esos llaves con el parametro
     for (int i = 0; i <  strlen(string); i++) {
         for (int j = 0; j < cipherer.elementSize; j++) {
-            if(string[i] == cipherer.elements[j].placeholder){
-                newString[i] = cipherer.elements[j].original;
+            if(string[i] == cipherer.elements[j].placeholder){//Por cada caracter igual al mascara
+                newString[i] = cipherer.elements[j].original;// Reemplazalo con el original
             }
         }
     }
-    newString[strlen(string)] = '\0';
-    return newString;
+    newString[strlen(string)] = '\0';// fin de linea
+    return newString;//retorna el texto desencriptado
 }
 
